@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :listings
   get 'home/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -61,4 +62,5 @@ Rails.application.routes.draw do
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   match 'auth/failure', to: redirect('/'), via: [:get, :post]
   match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
+  get "/search" => 'listings#search'
 end
