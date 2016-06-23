@@ -1,54 +1,110 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Picture:</strong>
-  <%= image_tag @listing.picture_url %>
-</p>
+<div class="panel panel-default">
+  <div class="panel-body">
+    
+    <!-- image -->
+    <div class="row">
+      <div class="col-md-12">
+        <%= image_tag @listing.picture_url, class: "img-responsive" %>
+      </div>
+    </div>
 
-<p>
-  <strong>Location:</strong>
-  <%= @listing.location %>
-</p>
+    <br>
 
-<p>
-  <strong>Address:</strong>
-  <%= @listing.address %>
-</p>
+    <!-- Main Info -->
+    <div class="row">
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-3 text-center">
+            <%= @listing.user.name %>
+          </div>
 
-<p>
-  <strong>Number of guests:</strong>
-  <%= @listing.number_of_guests %>
-</p>
+          <div class="col-md-9">
+            <h4><%= @listing.listingname %></h4>
+            <%= @listing.address %>
+            <%= @listing.location %>
 
-<p>
-  <strong>Number of bedrooms:</strong>
-  <%= @listing.number_of_bedrooms %>
-</p>
+            <div class="row text-center">
+              <div class="col-sm-3">
+                <%= @listing.hometype %>
+              </div>
+              <div class="col-sm-3">
+                <%= @listing.number_of_guests %> <%= @listing.number_of_guests > 1? "Guests" : "Guest" %>
+              </div>
+              <div class="col-sm-3">
+                <%= @listing.number_of_bedrooms %> <%= @listing.number_of_bedrooms > 1? "Bedrooms" : "Bedroom" %>
+              </div>              
+              <div class="col-sm-3">
+                <%= @listing.number_of_bathrooms %> <%= @listing.number_of_bathrooms > 1? "Bathrooms" : "Bathroom" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="col-md-4">
+      <!-- Reservation form -->
+      <%= render 'reservations/form' %>
+    </div>
+    </div>
 
-<p>
-  <strong>Number of bathrooms:</strong>
-  <%= @listing.number_of_bathrooms %>
-</p>
+    <!-- About -->
+    <div class="row">
+      <div class="col-md-12">
+        <h2>About This Listing</h2>
+        <p><%= @listing.summary %></p>
+      </div>
+    </div>
 
-<p>
-  <strong>Pets:</strong>
-  <%= @listing.pets %>
-</p>
+    <!-- Amenities -->
+    <div class="row">
+      <div class="col-md-2">
+        <p>Amenities</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <ul class="amenities">
+          <li class="<%= 'text-line-through' if !@listing.kitchen %>">Kitchen</li>
+          <li class="<%= 'text-line-through' if !@listing.internet %>">Internet</li>
+          <li class="<%= 'text-line-through' if !@listing.tv %>">TV</li>
+          <li class="<%= 'text-line-through' if !@listing.essentials %>">Essentials</li>
+          <li class="<%= 'text-line-through' if !@listing.shampoo %>">Shampoo</li>
+          <li class="<%= 'text-line-through' if !@listing.heating %>">Heating</li>
+          <li class="<%= 'text-line-through' if !@listing.aircond %>">Air Conditioning</li>
+          <li class="<%= 'text-line-through' if !@listing.washer %>">Washer</li>
+          <li class="<%= 'text-line-through' if !@listing.dryer %>">Dryer</li>
+          <li class="<%= 'text-line-through' if !@listing.freeparking %>">Free Parking on Premises</li>
+          <li class="<%= 'text-line-through' if !@listing.wireless %>">Wireless Internet</li>
+          <li class="<%= 'text-line-through' if !@listing.cabletv %>">Cable TV</li>
+          <li class="<%= 'text-line-through' if !@listing.breakfast %>">Breakfast</li>
+          <li class="<%= 'text-line-through' if !@listing.pets %>">Pets Allowed</li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <ul class="amenities">
+          <li class="<%= 'text-line-through' if !@listing.heating %>">Suitable for Events</li>
+          <li class="<%= 'text-line-through' if !@listing.smoker %>">Smoking Allowed</li>
+          <li class="<%= 'text-line-through' if !@listing.aircond %>">Wheelchair Accessible</li>
+          <li class="<%= 'text-line-through' if !@listing.aircond %>">Elevator in Building</li>
+          <li class="<%= 'text-line-through' if !@listing.aircond %>">Indoor Fireplace</li>
+          <li class="<%= 'text-line-through' if !@listing.aircond %>">Buzzer/Wireless Intercom</li>
+          <li class="<%= 'text-line-through' if !@listing.aircond %>">Doorman</li>
+          <li class="<%= 'text-line-through' if !@listing.aircond %>">Pool</li>
+          <li class="<%= 'text-line-through' if !@listing.aircond %>">Hot Tub</li
+          <li class="<%= 'text-line-through' if !@listing.aircond %>">Gym</li>
+          <li class="<%= 'text-line-through' if !@listing.aircond %>">24-Hour Check-In</li>
+          <li class="<%= 'text-line-through' if !@listing.aircond %>">Hangers</li>
+          <li class="<%= 'text-line-through' if !@listing.aircond %>">Iron</li>
+          <li class="<%= 'text-line-through' if !@listing.aircond %>">Hair Dryer</li>
+          <li class="<%= 'text-line-through' if !@listing.aircond %>">Laptop Friendly Workspace</li>
+        </ul>
+      </div>
+    </div>
 
-<p>
-  <strong>Smoker:</strong>
-  <%= @listing.smoker %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @listing.price %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @listing.user_id %>
-</p>
+  </div>
+</div>
 
 <%= link_to 'Edit', edit_listing_path(@listing) %> |
 <%= link_to 'Back', listings_path %>
+

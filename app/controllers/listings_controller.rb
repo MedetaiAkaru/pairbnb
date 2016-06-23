@@ -3,7 +3,7 @@ class ListingsController < ApplicationController
 
 
   def search
-    @listings = Listing.search params[:search]
+    @listings = Listing.search params[:search], match: :word_start
   end
 
   # GET /listings
@@ -74,6 +74,6 @@ class ListingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
-      params.require(:listing).permit(:location, :address, :number_of_guests, :number_of_bedrooms, :number_of_bathrooms, :pets, :smoker, :price, :picture, :user_id)
+      params.require(:listing).permit(:location, :address, :number_of_guests, :number_of_bedrooms, :number_of_bathrooms, :pets, :smoker, :price, :picture, :user_id, :hometype, :roomtype, :number_of_beds, :bedtype, :listingname, :summary, :country, :city, :address2, :state, :zipcode, :essentials, :tv, :cabletv, :aircond, :heating, :kitchen, :internet, :wireless, :anytime, :hottub, :washer, :pool, :dryer, :breakfast, :freeparking, :gym, :elevator, :fireplace, :intercom, :doorman, :shampoo, :hangers, :hairdryer, :iron, :laptopfriendly, :familyfriendly, :smoking, :events, :petsin, :wheelchair, :smokedetector, :carbonmonoxide, :firstaid, :safetycard, :extinguisher, :extinguisherlocation, :firealarmlocation, :gasshutofflocation, :emergencyexit, :emergencyphone, :thespace, :guestaccess, :interactions, :otherthings, :houserules, :neighbouroverview, :neighbourgettingaround, :currency, :bookingmode, :availablemode, :number)
     end
 end

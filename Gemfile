@@ -43,6 +43,11 @@ gem 'searchkick'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'toastr-rails'
+gem 'jquery-ui-rails'
+gem 'sidekiq'
+gem 'figaro'
+gem 'braintree'
+gem 'gon'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

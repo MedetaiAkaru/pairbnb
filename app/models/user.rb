@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   include Clearance::User
   has_many :listings
+  has_many :reservations
+  has_many :payments
 
   mount_uploader :avatar, AvatarUploader
   def self.from_omniauth(auth)
@@ -11,17 +13,26 @@ class User < ActiveRecord::Base
       user.email = auth.info.email
       user.oauth_token = auth.credentials.token
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
-      user.save!(:validate => false)
+      user.save!
     end
   end
 
-    def largeimage
+def has_payment_info?
+  braintree_customer_id
+end
+
+
+  def password_optional?
+    true
+  end
+
+  def largeimage
   "http://graph.facebook.com/#{self.uid}/picture?type=large"
   end
    def normalimage
   "http://graph.facebook.com/#{self.uid}/picture?type=normal"
   end
   def smallimage
-    "http://graph.facebook.com/#{self.uid}/picture?type=small"
+  "http://graph.facebook.com/#{self.uid}/picture?type=small"
   end
  end
