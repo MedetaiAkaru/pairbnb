@@ -1,0 +1,22 @@
+<div class="row">
+	<div class="col-md-3">
+		<div class="center">
+   		<% if !current_user.uid %>
+        <%= image_tag current_user.avatar_url, class: "img-circle avatar-small" %>
+      <% else %>
+        <%= image_tag current_user.largeimage, class: "img-circle avatar-small" %>
+      <% end %>
+	</div>
+	<div class="panel panel-default">
+
+		</div>
+	</div>
+
+	<div class="col-md-9">
+		<h2><%= @user.name %></h2>
+
+		<div class="description row-space-3">
+			<%= @user.email %>
+		</div>
+	</div>
+</div>

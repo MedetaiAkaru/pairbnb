@@ -3,7 +3,6 @@ class SessionsController < ApplicationController
     user = User.from_omniauth(env["omniauth.auth"])
     session[:user_id] = user.id
     sign_in(user)
-	  # render :text => "Welcome, #{current_user.name}."
     redirect_to root_url
 	end
 
